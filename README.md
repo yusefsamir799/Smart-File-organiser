@@ -136,7 +136,7 @@ Test coverage includes: extension categorization, case-insensitivity, junk file 
 
 ## Platform Support
 
-Tested on Windows 10/11, macOS, and Linux. Cross-filesystem moves are handled by falling back to copy-then-delete when `rename` fails.
+Tested on Windows 10/11, macOS, and Linux. 
 
 ## License
 
