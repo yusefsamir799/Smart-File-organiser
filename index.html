@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Organizer — Tame Your Messy Folders in Seconds</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ═══════════ NAVBAR ═══════════ -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="nav-logo" onclick="scrollToTop()">
+                <span class="logo-icon">📂</span>
+                <span class="logo-text">smart-organizer</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" onclick="smoothScroll(event, 'features')">Features</a>
+                <a href="#demo" onclick="smoothScroll(event, 'demo')">Demo</a>
+                <a href="#install" onclick="smoothScroll(event, 'install')">Install</a>
+                <a href="#pricing" onclick="smoothScroll(event, 'pricing')">Pricing</a>
+                <a href="https://github.com/yusefsamir799/Smart-File-organiser" class="btn-nav" onclick="trackClick('github-nav')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+            <button class="mobile-toggle" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section id="hero">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Free forever · 100% private · Made with love
+            </div>
+            <h1>
+                <span class="hero-line">You deserve a</span>
+                <span class="hero-line hero-gradient">tidy computer.</span>
+            </h1>
+            <p class="hero-hook">
+                We've all been there — 300 files in your Downloads folder, random screenshots on your Desktop, 
+                and that one PDF you can never find. <strong>What if cleaning up took 3 seconds instead of 30 minutes?</strong>
+            </p>
+            <p class="hero-sub">
+                Smart Organizer automatically sorts your messy folders into neat categories — 
+                photos go with photos, documents with documents. No tech skills needed. Just run it and relax.
+            </p>
+            <div class="hero-actions">
+                <a href="#pricing" class="btn-primary" onclick="smoothScroll(event, 'pricing')">
+                    <span>Download Free</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#demo" class="btn-secondary" onclick="smoothScroll(event, 'demo')">
+                    See it in action
+                </a>
+            </div>
+            <div class="hero-social-proof">
+                <div class="proof-avatars">
+                    <div class="avatar" style="background:#3b82f6;">M</div>
+                    <div class="avatar" style="background:#8b5cf6;">S</div>
+                    <div class="avatar" style="background:#06b6d4;">A</div>
+                    <div class="avatar" style="background:#10b981;">R</div>
+                    <div class="avatar" style="background:#f59e0b;">K</div>
+                </div>
+                <p class="proof-text">Loved by <strong>thousands</strong> of everyday users who just want a clean computer</p>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" id="stat-files">0</span>
+                    <span class="stat-label">Files Sorted</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" id="stat-categories">7</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" id="stat-speed">&lt;1s</span>
+                    <span class="stat-label">Avg Speed</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terminal Preview -->
+        <div class="hero-terminal">
+            <div class="terminal-chrome">
+                <div class="terminal-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <span class="terminal-title">smart-organizer</span>
+            </div>
+            <div class="terminal-body" id="hero-terminal-body">
+                <pre id="terminal-output"></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ BEFORE / AFTER ═══════════ -->
+    <section id="transform" class="section">
+        <div class="container">
+            <h2 class="section-title">See the transformation</h2>
+            <p class="section-sub">From chaos to order in one command</p>
+            <div class="transform-grid">
+                <div class="transform-card before">
+                    <div class="transform-label">BEFORE</div>
+                    <div class="file-tree">
+                        <div class="tree-header">📁 ~/Downloads</div>
+                        <div class="tree-item" style="--delay:0.1s">📷 vacation.jpg</div>
+                        <div class="tree-item" style="--delay:0.15s">📄 report.pdf</div>
+                        <div class="tree-item" style="--delay:0.2s">🎵 song.mp3</div>
+                        <div class="tree-item" style="--delay:0.25s">📷 screenshot.png</div>
+                        <div class="tree-item" style="--delay:0.3s">🎬 movie.mp4</div>
+                        <div class="tree-item" style="--delay:0.35s">📦 archive.zip</div>
+                        <div class="tree-item" style="--delay:0.4s">💻 index.html</div>
+                        <div class="tree-item" style="--delay:0.45s">📄 notes.txt</div>
+                        <div class="tree-item" style="--delay:0.5s">🎵 podcast.wav</div>
+                    </div>
+                </div>
+
+                <div class="transform-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-cmd">smart-organizer --path ~/Downloads</div>
+                    <svg class="arrow-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+
+                <div class="transform-card after">
+                    <div class="transform-label">AFTER</div>
+                    <div class="file-tree">
+                        <div class="tree-header">📁 ~/Downloads</div>
+                        <div class="tree-folder">📁 Images/
+                            <div class="tree-child">vacation.jpg, screenshot.png</div>
+                        </div>
+                        <div class="tree-folder">📁 Documents/
+                            <div class="tree-child">report.pdf, notes.txt</div>
+                        </div>
+                        <div class="tree-folder">📁 Music/
+                            <div class="tree-child">song.mp3, podcast.wav</div>
+                        </div>
+                        <div class="tree-folder">📁 Videos/
+                            <div class="tree-child">movie.mp4</div>
+                        </div>
+                        <div class="tree-folder">📁 Archives/
+                            <div class="tree-child">archive.zip</div>
+                        </div>
+                        <div class="tree-folder">📁 Code/
+                            <div class="tree-child">index.html</div>
+                        </div>
+                        <div class="tree-log">📋 organizer_log.txt</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ FEATURES ═══════════ -->
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">Why Smart Organizer?</h2>
+            <p class="section-sub">Organise more than 400 files in less than a second — with maximum privacy</p>
+            <div class="features-grid">
+                <div class="feature-card" onclick="expandFeature(this)">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Blazing Fast</h3>
+                    <p>Written in Rust for maximum performance. Organizes thousands of files in under a second.</p>
+                    <div class="feature-tag">Rust-powered</div>
+                </div>
+                <div class="feature-card" onclick="expandFeature(this)">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Safe by Design</h3>
+                    <p>Never deletes or overwrites files. Smart collision handling appends dates and version numbers.</p>
+                    <div class="feature-tag">Zero data loss</div>
+                </div>
+                <div class="feature-card" onclick="expandFeature(this)">
+                    <div class="feature-icon">🚀</div>
+                    <h3>400+ Files in Under a Second</h3>
+                    <p>Powered by Rust, one of the fastest programming languages on earth. Your entire Downloads folder — sorted before you blink.</p>
+                    <div class="feature-tag">Lightning fast</div>
+                </div>
+                <div class="feature-card" onclick="expandFeature(this)">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Duplicate Detection</h3>
+                    <p>Fingerprint files by name, size, and date. Duplicates are flagged and skipped automatically.</p>
+                    <div class="feature-tag">--find-duplicates</div>
+                </div>
+                <div class="feature-card" onclick="expandFeature(this)">
+                    <div class="feature-icon">🗂️</div>
+                    <h3>Structure Preservation</h3>
+                    <p>Keep your existing subfolder hierarchy intact inside category folders with <code>--keep-structure</code>.</p>
+                    <div class="feature-tag">Folder-aware</div>
+                </div>
+                <div class="feature-card" onclick="expandFeature(this)">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Maximum Privacy</h3>
+                    <p>Everything runs on your computer. No cloud uploads, no accounts, no tracking. Your files never leave your machine.</p>
+                    <div class="feature-tag">100% offline</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ DEMO ═══════════ -->
+    <section id="demo" class="section">
+        <div class="container">
+            <h2 class="section-title">Try the commands</h2>
+            <p class="section-sub">Click any command to see it in the terminal</p>
+            <div class="demo-layout">
+                <div class="demo-commands">
+                    <button class="cmd-btn active" onclick="runDemo(this, 'basic')">
+                        <span class="cmd-name">Basic Organize</span>
+                        <code>smart-organizer --path ~/Downloads</code>
+                    </button>
+                    <button class="cmd-btn" onclick="runDemo(this, 'dryrun')">
+                        <span class="cmd-name">Dry Run Preview</span>
+                        <code>smart-organizer --dry-run --path ~/Desktop</code>
+                    </button>
+                    <button class="cmd-btn" onclick="runDemo(this, 'duplicates')">
+                        <span class="cmd-name">Find Duplicates</span>
+                        <code>smart-organizer --find-duplicates --path ~/Files</code>
+                    </button>
+                    <button class="cmd-btn" onclick="runDemo(this, 'full')">
+                        <span class="cmd-name">Full Power</span>
+                        <code>smart-organizer --dry-run --find-duplicates --keep-structure --path ~/Projects</code>
+                    </button>
+                </div>
+                <div class="demo-terminal">
+                    <div class="terminal-chrome">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">Terminal</span>
+                    </div>
+                    <div class="terminal-body">
+                        <pre id="demo-output"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ INSTALL ═══════════ -->
+    <section id="install" class="section">
+        <div class="container">
+            <h2 class="section-title">Get started in 30 seconds</h2>
+            <p class="section-sub">Requires Rust 1.70+ · Supports Linux, macOS, Windows</p>
+            <div class="install-steps">
+                <div class="install-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Clone the repo</h3>
+                        <div class="code-block" onclick="copyCode(this)">
+                            <code>git clone https://github.com/yusefsamir799/Smart-File-organiser.git</code>
+                            <span class="copy-hint">Click to copy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="install-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Build the binary</h3>
+                        <div class="code-block" onclick="copyCode(this)">
+                            <code>cd smart-organizer && cargo build --release</code>
+                            <span class="copy-hint">Click to copy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="install-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Organize your files</h3>
+                        <div class="code-block" onclick="copyCode(this)">
+                            <code>./target/release/smart-organizer --dry-run --path ~/Downloads</code>
+                            <span class="copy-hint">Click to copy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <h3>Or download pre-built binaries</h3>
+                <div class="download-buttons">
+                    <a href="#" class="download-btn" onclick="trackClick('download-x86')">
+                        <span class="dl-icon">🐧</span>
+                        <span class="dl-info">
+                            <strong>Linux x86_64</strong>
+                            <small>smart-organizer-linux-amd64</small>
+                        </span>
+                    </a>
+                    <a href="#" class="download-btn" onclick="trackClick('download-arm')">
+                        <span class="dl-icon">🐧</span>
+                        <span class="dl-info">
+                            <strong>Linux aarch64</strong>
+                            <small>smart-organizer-linux-arm64</small>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ PRICING ═══════════ -->
+    <section id="pricing" class="section">
+        <div class="container">
+            <h2 class="section-title">Simple & honest pricing</h2>
+            <p class="section-sub">Smart Organizer is free — and always will be</p>
+            
+            <div class="trust-message">
+                <div class="trust-icon">💛</div>
+                <p>If Smart File Organizer has helped you, it is all yours — <strong>help us grow.</strong><br>
+                <span class="trust-small">Every contribution, big or small, keeps this project alive and free for everyone.</span></p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- FREE PLAN -->
+                <div class="pricing-card" onclick="selectPlan(this, 'free')">
+                    <div class="plan-badge free-badge">Most Popular</div>
+                    <div class="plan-header">
+                        <h3 class="plan-name">Free</h3>
+                        <div class="plan-price">
+                            <span class="price-amount">$0</span>
+                            <span class="price-period">forever</span>
+                        </div>
+                    </div>
+                    <p class="plan-desc">Everything you need to organize your files. No catches.</p>
+                    <ul class="plan-features">
+                        <li><span class="check">✓</span> All organizing features</li>
+                        <li><span class="check">✓</span> Dry run preview</li>
+                        <li><span class="check">✓</span> Duplicate detection</li>
+                        <li><span class="check">✓</span> Custom categories</li>
+                        <li><span class="check">✓</span> Unlimited files</li>
+                        <li class="plan-note"><span class="note-icon">ℹ</span> Includes small sponsor banner</li>
+                    </ul>
+                    <a href="#install" class="plan-btn" onclick="smoothScroll(event, 'install')">Download Free</a>
+                </div>
+
+                <!-- SUPPORTER PLAN -->
+                <div class="pricing-card supporter" onclick="selectPlan(this, 'supporter')">
+                    <div class="plan-badge supporter-badge">Support Us 💛</div>
+                    <div class="plan-header">
+                        <h3 class="plan-name">Supporter</h3>
+                        <div class="plan-price">
+                            <span class="price-currency">$</span>
+                            <input type="number" class="price-input" id="supporter-amount" value="5" min="1" max="999" onclick="event.stopPropagation()" onchange="updateAmount(this)">
+                            <span class="price-period">you choose</span>
+                        </div>
+                    </div>
+                    <p class="plan-desc">Same tool, no ads — and a warm feeling knowing you helped.</p>
+                    <ul class="plan-features">
+                        <li><span class="check">✓</span> Everything in Free</li>
+                        <li><span class="check star">★</span> No ads or banners</li>
+                        <li><span class="check star">★</span> Supporter badge in logs</li>
+                        <li><span class="check star">★</span> Name in our Thank You wall</li>
+                        <li><span class="check star">★</span> Early access to updates</li>
+                        <li class="plan-heart">Your support keeps this free for others</li>
+                    </ul>
+                    <a href="#" class="plan-btn supporter-btn" onclick="handleSupport(event)">Support & Download</a>
+                    
+                    <div class="quick-amounts">
+                        <button onclick="setAmount(event, 3)">$3</button>
+                        <button onclick="setAmount(event, 5)" class="active">$5</button>
+                        <button onclick="setAmount(event, 10)">$10</button>
+                        <button onclick="setAmount(event, 25)">$25</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-footer">
+                <p>🔒 Secure payment · One-time only · No subscription · Cancel-proof</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <span class="logo-icon">📂</span>
+                    <span>smart-organizer</span>
+                    <span class="footer-version">v1.1.0</span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/yusefsamir799/Smart-File-organiser">GitHub</a>
+                    <a href="https://github.com/yusefsamir799/Smart-File-organiser/issues">Issues</a>
+                    <a href="https://github.com/yusefsamir799/Smart-File-organiser/blob/main/LICENSE">MIT License</a>
+                </div>
+                <p class="footer-copy">Built with 🦀 Rust · Made for tidy people</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+========================================
+Run started:  2026-02-11 14:49:05
+Directory:    C:\Users\Petra\AppData\Local\Temp\organizer_test_org_noext_33100
+Dry-run:      false
+========================================
+
+
+========================================
+Run started:  2026-02-11 14:49:05
+Directory:    C:\Users\Petra\AppData\Local\Temp\organizer_test_org_collision_33100
+Dry-run:      false
+========================================
+
+photo.jpg -> Images\photo.jpg
+photo.jpg -> Images\photo_2026-02-11.jpg
+
+========================================
+Run started:  2026-02-11 14:49:05
+Directory:    C:\Users\Petra\AppData\Local\Temp\organizer_test_org_keep_33100
+Dry-run:      false
+========================================
+
+projects\work\report.pdf -> Documents\projects\work\report.pdf
+vacation\photo.jpg -> Images\vacation\photo.jpg
+
+========================================
+Run started:  2026-02-11 14:49:05
+Directory:    C:\Users\Petra\AppData\Local\Temp\organizer_test_org_junk_33100
+Dry-run:      false
+========================================
+
+photo.jpg -> Images\photo.jpg
+
+========================================
+Run started:  2026-02-11 14:49:05
+Directory:    C:\Users\Petra\AppData\Local\Temp\organizer_test_org_unknown_33100
+Dry-run:      false
+========================================
+
+
+========================================
+Run started:  2026-02-11 14:49:05
+Directory:    C:\Users\Petra\AppData\Local\Temp\organizer_test_org_basic_33100
+Dry-run:      false
+========================================
+
+photo.jpg -> Images\photo.jpg
+photo.jpg -> Images\photo.jpg
+report.pdf -> Documents\report.pdf
+song.mp3 -> Music\song.mp3
