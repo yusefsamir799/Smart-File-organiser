@@ -49,3 +49,260 @@ photo.jpg -> Images\photo.jpg
 photo.jpg -> Images\photo.jpg
 report.pdf -> Documents\report.pdf
 song.mp3 -> Music\song.mp3
+
+========================================
+Run: 
+2026-02-12 11:38:39  Dir: /tmp/organizer_test_org_nodup_12158========================================  Dry: 
+Run: false
+========================================
+
+2026-02-12 11:38:39  Dir: /tmp/organizer_test_org_dup_12158  Dry: false
+========================================
+
+b/photo.jpg -> Images/photo.jpg
+a/photo.jpg -> Images/photo_2026-02-12.jpg
+
+b/photo.jpg======================================== -> 
+Run: Images/photo.jpg
+2026-02-12 11:38:39  Dir: /tmp/organizer_test_org_noext_12158  Dry: false
+========================================
+
+photo.jpg -> Images/photo.jpg
+
+========================================
+Run started:  2026-02-12 11:46:55
+Directory:    /tmp/organizer_test_org_dup_12756
+Dry-run:      false
+========================================
+
+b/photo.jpg -> Images/photo.jpg
+
+========================================
+Run started:  2026-02-12 11:46:55
+Directory:    /tmp/organizer_test_org_collision_12756
+Dry-run:      false
+========================================
+
+photo.jpg -> Images/photo_2026-02-12.jpg
+
+========================================
+Run started:  2026-02-12 11:46:55
+Directory:    /tmp/organizer_test_org_keep_12756
+Dry-run:      false
+========================================
+
+projects/work/report.pdf -> Documents/projects/work/report.pdf
+
+========================================
+Run started:  2026-02-12 11:46:55
+Directory:    /tmp/organizer_test_org_unknown_12756
+Dry-run:      false
+========================================
+
+photo.jpg -> Images/photo.jpg
+vacation/photo.jpg -> Images/vacation/photo.jpg
+
+========================================
+Run started:  2026-02-12 11:46:55
+Directory:    /tmp/organizer_test_org_junk_12756
+Dry-run:      false
+========================================
+
+
+========================================
+Run started:  2026-02-12 11:46:55
+Directory:    /tmp/organizer_test_org_basic_12756
+Dry-run:      false
+========================================
+
+photo.jpg -> Images/photo.jpg
+song.mp3 -> Music/song.mp3
+photo.jpg -> Images/photo.jpg
+report.pdf -> Documents/report.pdf
+
+========================================
+Run started:  2026-02-12 11:47:21
+Directory:    /tmp/organizer_test_org_dup_12806
+Dry-run:      false
+========================================
+
+b/photo.jpg -> Images/photo.jpg
+
+========================================
+Run started:  2026-02-12 11:47:21
+Directory:    /tmp/organizer_test_org_noext_12806
+Dry-run:      false
+========================================
+
+
+========================================
+Run started:  2026-02-12 11:47:21
+Directory:    /tmp/organizer_test_org_junk_12806
+Dry-run:      false
+========================================
+
+photo.jpg -> Images/photo.jpg
+photo.jpg -> Images/photo.jpg
+
+========================================
+Run started:  2026-02-12 11:47:21
+Directory:    /tmp/organizer_test_org_collision_12806
+Dry-run:      false
+========================================
+
+photo.jpg -> Images/photo_2026-02-12.jpg
+
+========================================
+Run started:  2026-02-12 11:47:21
+Directory:    /tmp/organizer_test_org_keep_12806
+Dry-run:      false
+========================================
+
+
+========================================
+Run started:  2026-02-12 11:47:21
+Directory:    /tmp/organizer_test_org_unknown_12806
+Dry-run:      false
+========================================
+
+
+========================================
+Run started:  2026-02-12 11:47:21
+Directory:    /tmp/organizer_test_org_basic_12806
+Dry-run:      false
+========================================
+
+photo.jpg -> Images/photo.jpg
+song.mp3 -> Music/song.mp3
+projects/work/report.pdf -> Documents/projects/work/report.pdf
+photo.jpg -> Images/photo.jpg
+vacation/photo.jpg -> Images/vacation/photo.jpg
+report.pdf -> Documents/report.pdf
+
+========================================
+Run started:  2026-02-12 11:47:28
+Directory:    /tmp/organizer_test_org_nodup_12852
+Dry-run:      false
+========================================
+
+b/photo.jpg -> Images/photo.jpg
+a/photo.jpg -> Images/photo_2026-02-12.jpg
+
+========================================
+Run started:  2026-02-12 11:47:28
+Directory:    /tmp/organizer_test_org_noext_12852
+Dry-run:      false
+========================================
+
+
+========================================
+Run started:  2026-02-12 11:47:28
+Directory:    /tmp/organizer_test_org_collision_12852
+Dry-run:      false
+========================================
+
+photo.jpg -> Images/photo_2026-02-12.jpg
+photo.jpg -> Images/photo.jpg
+
+========================================
+Run started:  2026-02-12 11:47:28
+Directory:    /tmp/organizer_test_org_keep_12852
+Dry-run:      false
+========================================
+
+projects/work/report.pdf -> Documents/projects/work/report.pdf
+vacation/photo.jpg -> Images/vacation/photo.jpg
+
+========================================
+Run started:  2026-02-12 11:47:28
+Directory:    /tmp/organizer_test_org_unknown_12852
+Dry-run:      false
+========================================
+
+photo.jpg -> Images/photo.jpg
+
+========================================
+Run started:  2026-02-12 11:47:28
+Directory:    /tmp/organizer_test_org_junk_12852
+Dry-run:      false
+========================================
+
+
+========================================
+Run started:  2026-02-12 11:47:28
+Directory:    /tmp/organizer_test_org_basic_12852
+Dry-run:      false
+========================================
+
+photo.jpg -> Images/photo.jpg
+song.mp3 -> Music/song.mp3
+photo.jpg -> Images/photo.jpg
+report.pdf -> Documents/report.pdf
+
+========================================
+Run started:  2026-02-12 11:47:31
+Directory:    /tmp/organizer_test_org_nodup_12898
+Dry-run:      false
+========================================
+
+
+========================================
+Run started:  b/photo.jpg -> Images/photo.jpg
+2026-02-12 11:47:31
+Directory:    /tmp/organizer_test_org_dup_12898
+Dry-run:      false
+========================================
+
+a/photo.jpg -> Images/photo_2026-02-12.jpg
+b/photo.jpg -> Images/photo.jpg
+
+========================================
+Run started:  2026-02-12 11:47:31
+Directory:    /tmp/organizer_test_org_noext_12898
+Dry-run:      false
+========================================
+
+photo.jpg -> Images/photo.jpg
+
+========================================
+Run started:  2026-02-12 11:47:31
+Directory:    /tmp/organizer_test_org_collision_12898
+Dry-run:      false
+========================================
+
+
+========================================
+Run started:  2026-02-12 11:47:31
+Directory:    /tmp/organizer_test_org_keep_12898
+Dry-run:      false
+========================================
+
+photo.jpg -> Images/photo_2026-02-12.jpg
+projects/work/report.pdf -> Documents/projects/work/report.pdf
+
+========================================
+Run started:  2026-02-12 11:47:31
+Directory:    /tmp/organizer_test_org_unknown_12898
+Dry-run:      false
+========================================
+
+photo.jpg -> Images/photo.jpg
+vacation/photo.jpg -> Images/vacation/photo.jpg
+
+========================================
+Run started:  2026-02-12 11:47:31
+Directory:    /tmp/organizer_test_org_junk_12898
+Dry-run:      false
+========================================
+
+photo.jpg -> Images/photo.jpg
+
+========================================
+Run started:  2026-02-12 11:47:31
+Directory:    /tmp/organizer_test_org_basic_12898
+Dry-run:      false
+========================================
+
+song.mp3 -> Music/song.mp3
+photo.jpg -> Images/photo.jpg
+report.pdf -> Documents/report.pdf
