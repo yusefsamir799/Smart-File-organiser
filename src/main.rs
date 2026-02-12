@@ -1,124 +1,136 @@
-use std::fs;
-use std::path::{Path, PathBuf};
-use std::io::{self, Write};
+use std::path::PathBuf;
 
+use clap::Parser;
+use colored::*;
+
+use smart_organizer::{organize, Config, OrganizeOpts};
+
+// This struct holds the command-line arguments the user can type in
+// For example: smart-organizer --path ~/Downloads --dry-run
+#[derive(Parser, Debug)]
+#[command(name = "smart-organizer")]
+#[command(version, about, long_about = None)]
+struct Args {
+    // Which folder to organize (if not given, use the current folder)
+    #[arg(short, long, default_value = ".")]
+    path: PathBuf,
+
+    // If true, just show what would happen but don't actually move files
+    #[arg(short, long)]
+    dry_run: bool,
+
+    // If true, look for duplicate files and skip them
+    #[arg(long)]
+    find_duplicates: bool,
+
+    // If true, keep the original subfolder layout inside each category
+    #[arg(long)]
+    keep_structure: bool,
+}
+
+// This is where the program starts running
 fn main() {
-    println!("=== File Organizer ===\n");
-    
-    // Get the directory to organize
-    print!("Enter the path to organize (or press Enter for current directory): ");
-    io::stdout().flush().unwrap();
-    
-    let mut input = String::new();
-    io::stdin().read_line(&mut input).unwrap();
-    let target_dir = input.trim();
-    
-    // Use current directory if no input
-    let directory = if target_dir.is_empty() {
-        "."
-    } else {
-        target_dir
+    // Print a nice header
+    println!("{}", "═══════════════════════════════════════".cyan());
+    println!("{}", "      Smart File Organizer  v1.1".cyan().bold());
+    println!("{}", "═══════════════════════════════════════".cyan());
+    println!();
+
+    // Read what the user typed in the command line
+    let args = Args::parse();
+
+    // Load the config file (which file types go in which folders)
+    let config = Config::load();
+
+    // Check if the path the user gave is actually a folder
+    if !args.path.is_dir() {
+        eprintln!(
+            "{} \"{}\" is not a directory",
+            "✗".red().bold(),
+            args.path.display()
+        );
+        std::process::exit(1);
+    }
+
+    // If dry-run mode is on, tell the user nothing will be moved
+    if args.dry_run {
+        println!(
+            "{}",
+            "📋 PREVIEW MODE — no files will be moved".yellow().bold()
+        );
+        println!(
+            "{}",
+            "   Remove --dry-run to organize for real.".yellow()
+        );
+        println!();
+    }
+
+    // Show which folder we are organizing
+    println!("📁 Target: {}", args.path.display());
+    println!();
+
+    // Put all the user's choices into one struct to pass to the organize function
+    let opts = OrganizeOpts {
+        path: args.path,
+        dry_run: args.dry_run,
+        find_duplicates: args.find_duplicates,
+        keep_structure: args.keep_structure,
     };
-    
-    println!("\nOrganizing files in: {}", directory);
-    
-    // Ask for confirmation
-    print!("Continue? (y/n): ");
-    io::stdout().flush().unwrap();
-    
-    let mut confirm = String::new();
-    io::stdin().read_line(&mut confirm).unwrap();
-    
-    if confirm.trim().to_lowercase() != "y" {
-        println!("Cancelled.");
-        return;
-    }
-    
-    // Organize the files
-    match organize_files(directory) {
-        Ok(count) => println!("\n✓ Successfully organized {} files!", count),
-        Err(e) => println!("\n✗ Error: {}", e),
-    }
-}
 
-fn organize_files(directory: &str) -> io::Result<usize> {
-    let path = Path::new(directory);
-    let mut file_count = 0;
-    
-    // Read all entries in the directory
-    let entries = fs::read_dir(path)?;
-    
-    for entry in entries {
-        let entry = entry?;
-        let file_path = entry.path();
-        
-        // Skip if it's a directory
-        if file_path.is_dir() {
-            continue;
-        }
-        
-        // Get file extension
-        if let Some(extension) = file_path.extension() {
-            let ext = extension.to_string_lossy().to_lowercase();
-            
-            // Determine category based on extension
-            let category = categorize_file(&ext);
-            
-            // Create category folder if it doesn't exist
-            let category_path = path.join(category);
-            if !category_path.exists() {
-                fs::create_dir(&category_path)?;
+    // Run the organizer and check if it worked or failed
+    match organize(&opts, &config) {
+        // If it worked, show a summary of what happened
+        Ok(stats) => {
+            println!();
+            if opts.dry_run {
+                // In preview mode, show what WOULD happen
+                println!(
+                    "{} Preview complete: {} file(s) would be moved",
+                    "✓".green().bold(),
+                    stats.moved
+                );
+                if stats.duplicates > 0 {
+                    println!(
+                        "   {} duplicate(s) detected",
+                        stats.duplicates.to_string().yellow()
+                    );
+                }
+                if stats.skipped > 0 {
+                    println!(
+                        "   {} file(s) skipped (no matching category)",
+                        stats.skipped
+                    );
+                }
+                println!(
+                    "{}",
+                    "   Run again without --dry-run to apply changes.".yellow()
+                );
+            } else {
+                // In real mode, show what actually happened
+                println!(
+                    "{} Organized {} file(s)",
+                    "✓".green().bold(),
+                    stats.moved
+                );
+                if stats.duplicates > 0 {
+                    println!("   {} duplicate(s) skipped", stats.duplicates);
+                }
+                if stats.skipped > 0 {
+                    println!("   {} file(s) had no matching category", stats.skipped);
+                }
+                if stats.errors > 0 {
+                    println!(
+                        "   {} file(s) could not be moved",
+                        stats.errors.to_string().red()
+                    );
+                }
+                println!("{}", "   See organizer_log.txt for details.".dimmed());
             }
-            
-            // Move file to category folder
-            let file_name = file_path.file_name().unwrap();
-            let new_path = category_path.join(file_name);
-            
-            // Check if file already exists in destination
-            if new_path.exists() {
-                println!("  Skipping {} (already exists in {})", file_name.to_string_lossy(), category);
-                continue;
-            }
-            
-            fs::rename(&file_path, &new_path)?;
-            println!("  Moved {} → {}/", file_name.to_string_lossy(), category);
-            file_count += 1;
         }
-    }
-    
-    Ok(file_count)
-}
-
-fn categorize_file(extension: &str) -> &str {
-    match extension {
-        // Images
-        "jpg" | "jpeg" | "png" | "gif" | "bmp" | "svg" | "webp" | "ico" => "Images",
-        
-        // Documents
-        "pdf" | "doc" | "docx" | "txt" | "odt" | "rtf" => "Documents",
-        
-        // Spreadsheets
-        "xls" | "xlsx" | "csv" | "ods" => "Spreadsheets",
-        
-        // Presentations
-        "ppt" | "pptx" | "odp" => "Presentations",
-        
-        // Videos
-        "mp4" | "avi" | "mkv" | "mov" | "wmv" | "flv" | "webm" => "Videos",
-        
-        // Audio
-        "mp3" | "wav" | "flac" | "aac" | "ogg" | "wma" | "m4a" => "Audio",
-        
-        // Archives
-        "zip" | "rar" | "7z" | "tar" | "gz" | "bz2" => "Archives",
-        
-        // Code
-        "py" | "rs" | "js" | "java" | "cpp" | "c" | "h" | "html" | "css" | "json" | "xml" => "Code",
-        
-        // Executables
-        "exe" | "msi" | "app" | "deb" | "rpm" => "Programs",
-        
-        // Default category for unknown types
-        _ => "Other",
+        // If something went wrong, show the error
+        Err(e) => {
+            eprintln!("\n{} {}", "✗".red().bold(), e);
+            std::process::exit(1);
+        }
     }
 }
